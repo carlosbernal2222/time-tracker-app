@@ -1,25 +1,43 @@
 import ellipsis from "../images/icon-ellipsis.svg"
+import React from "react"
 
-export default function Category(props){
+export default function Category({item, timeframe}){
     const divStyle ={
-        backgroundColor : props.item.bgColor,
+        backgroundColor : item.bgColor,
     }
 
-    console.log(typeof(props.item.coverIcon))
+    const coverIcon ={
+        img: "../images/icon-work.svg"
+    }
+
+
+
+   const getTimeframeText = () => {
+        switch(timeframe) {
+            case 'daily':
+                return 'Yesterday';
+            case 'weekly':
+                return 'Last Week';
+            case 'monthly':
+                return 'Last Month';
+            default:
+                return 'Previously';
+        }
+    }; 
 
     return(
         <div className="category--container" style={divStyle}>
             <div className="category--top" >
-                <img src={require(`../images/${props.item.coverIcon}`).default} className="category--top__icon"/>
+                <img src="" className="category--top__icon"/>
             </div>
             <div className="category--bottom">
                 <div className="category--bottom__top">
-                    <p>{props.item.title}</p>
+                    <p>{item.title}</p>
                     <img src={ellipsis} className="ellipsis"/>
                 </div>
                 <div className="category--bottom__bottom">
-                    <p id="current--time">{props.item.timeframes.weekly.current}hrs</p>
-                    <p>Last Week - {props.item.timeframes.weekly.previous}hrs</p>
+                    <p id="current--time">{item.timeframes[timeframe].current}hrs</p>
+                    <p>{getTimeframeText()} - {item.timeframes[timeframe].previous}hrs</p>
                 </div>
             </div>
         </div>

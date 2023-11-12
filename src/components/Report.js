@@ -1,8 +1,8 @@
 
 import profileImage from "../images/image-jeremy.png"
-import React, {useState} from "react";
+import React from "react";
 
-export default function Report(){
+export default function Report({onTimeframeChange}){
     return(
         <div className="report--container">
             <div id="report--top">
@@ -13,10 +13,10 @@ export default function Report(){
                 </div>
             </div>
             <div id="report--bottom">
-                <button  className="report--bottom__btn">Daily</button>
-                <button  className="report--bottom__btn">Weekly</button>
-                <button  className="report--bottom__btn">Monthly</button>
+                <button onClick={()=>onTimeframeChange('daily')} className="report--bottom__btn">Daily</button>
+                <button onClick={()=>onTimeframeChange('weekly')} className="report--bottom__btn">Weekly</button>
+                <button onClick={()=>onTimeframeChange('monthly')} className="report--bottom__btn">Monthly</button>
             </div>
         </div>
-    )
+    );
 }
